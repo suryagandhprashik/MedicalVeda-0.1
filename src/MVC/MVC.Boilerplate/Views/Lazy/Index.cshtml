@@ -1,0 +1,48 @@
+﻿@using MVC.Boilerplate.Models.Lazy
+@{  
+    ViewBag.Title = "LazyLoading Demo";  
+} 
+
+<div class="jumbotron">  
+    <h1>LazyLoading Demo</h1>  
+    <p class="lead">  
+        <strong>Total records: <span class="text-primary">@ViewBag.TotalPersonCount</span> </strong><br>
+        <strong>Records Per Page: <span class="text-primary">@ViewBag.RecordsPerPage</span></strong>
+    </p>  
+</div>  
+  
+<table class="table table-striped table-bordered table-condensed infinite-scroll">  
+        <thead>  
+            <tr>  
+                <th>ID #</th>  
+                <th>Name</th>  
+                <th>Email</th>  
+            </tr>  
+        </thead>  
+        <tbody>  
+            @Html.Partial("_PersonData", (ViewBag.Persons as List<Person>))  
+        </tbody>  
+    </table>  
+     <div class="overlay">
+    <div class="d-flex justify-content-center">  
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem; z-index: 20;">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      </div>
+  
+@section scripts{  
+    <script src="~/scripts/lazyLoading.js" asp-append-version=true></script>  
+    <script type="text/javascript">  
+        $(document).ajaxStart(function() {
+            $(".overlay").css('visibility', 'visible')
+         });
+         $(document).ajaxComplete(function() {
+            $(".overlay").css('visibility', 'hidden')
+         });
+
+        var url = '@Url.RouteUrl("Lazy/LoadList")';  
+        maxPageCount = @ViewBag.MaxPageCount;
+        $(window).scroll(scrollHandler);  
+    </script>  
+}  

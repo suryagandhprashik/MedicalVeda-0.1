@@ -1,0 +1,59 @@
+﻿@model MVC.Boilerplate.Models.Event.Commands.CreateEvent
+@{
+    ViewData["Title"] = "Create Event";
+}
+<div class="card my-2">
+    <div class=" card-header">
+        <div class="align-items-center">
+            <h3>@ViewData["Title"]</h3>
+            <form asp-controller="Event" asp-action="CreateEvent">
+                <div class="form-group float-end m-2">
+                <input type="button" value="Cancel" class="btn btn-danger" onclick="location.href='@Url.Action("GetEvents", "Event")'">
+                <button type="submit" class="btn btn-md btn-primary">Submit</button>
+                </div>
+                 <div class="form-group ">
+                    <label class="control-label fw-bold text-dark">Name</label>
+                    <input type="text" class="form-control" asp-for=Name placeholder="Event Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label fw-bold text-dark">Price</label>
+                    <input type="text" class="form-control" asp-for=Price placeholder="Enter Price">
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Artist" class="control-label fw-bold text-dark">Atrist</label>
+                    <input type="text" class="form-control" asp-for=Artist placeholder="Enter Artist Name">
+                    <span asp-validation-for="Artist" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label fw-bold text-dark">Date</label>
+                    <input type="datetime-local" class="form-control" asp-for=Date placeholder="Enter Date">
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label fw-bold text-dark">Description</label>
+                    <textarea class="form-control" asp-for=Description placeholder="Enter Description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageUrl" class="control-label fw-bold text-dark">ImageUrl</label>
+                    <input type="text" class="form-control" asp-for=ImageUrl placeholder="Enter ImageUrl">
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="control-label fw-bold text-dark">Category Name</label>
+                    <select type="text" class="form-control" asp-for=CategoryId placeholder="Select Category Name">
+
+                        @for (int i = 0; i < ViewBag.categoryId.Count; i++)
+                        {
+                            <option value="@ViewBag.categoryId[i].CategoryId">@ViewBag.categoryId[i].Name</option>
+                        }
+
+                    </select>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+﻿@model MVC.Boilerplate.Models.Order.Orders
+
+<form asp-controller="Order" asp-action="GetOrders">      
+        <div class="form-group col-md-4">
+            <label asp-for="OrderPlaced" class="control-label fw-bold text-dark mt-2">Order Placed Date</label>
+            <input type="datetime-local" class="form-control mt-2" asp-for="OrderPlaced">
+        </div>
+        <button type="submit" class="btn btn-primary mt-4 mb-4">Get Orders</button>
+</form>

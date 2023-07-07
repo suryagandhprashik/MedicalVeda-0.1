@@ -1,0 +1,73 @@
+﻿@{
+    Layout = null;
+}
+@model MVC.Boilerplate.Models.Account.Login
+<!Doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MVC.Boilerplate.styles.css" asp-append-version="true" />
+    
+
+
+ <link rel="stylesheet" href="~/css/Login.css"  />
+
+  </head>
+  <body>
+
+  <section class="vh-100">
+  <div class="mask d-flex align-items-center h-100 ">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-center mb-4">Please sign in</h2>
+              <form asp-action="Login" asp-controller="Account" method="post">
+               <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+               <div class="mb-3">
+               
+    <div class="form-floating">
+      <input type="email" class="form-control text-lg-start mb-2"  asp-for=Email id="Email" placeholder="name@example.com">
+      <label for="Email">Email address</label>
+      <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control text-lg-start mb-2" asp-for=Password id="Password" placeholder="Password">
+      <label for="Password">Password</label>
+      
+      <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+   
+    <button class="w-100 btn btn-lg btn-primary mb-2 mt-3 text-center" type="submit">Sign in</button>
+
+    <p class="text-center text-muted mt-3 mb-0">To Create an Account <a href="@Url.Action("Register", "Account")"
+                    class="fw-bold text-body"><u>Create Account Here</u></a></p>
+  </form>
+
+
+          </div>
+         </div>
+        </div>
+       </div>
+     </div>
+   </div>
+ </section>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await Component.InvokeAsync("Notyf") 
+  </body>
+</html>
+ 
+@*@section Scripts{
+     @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}*@

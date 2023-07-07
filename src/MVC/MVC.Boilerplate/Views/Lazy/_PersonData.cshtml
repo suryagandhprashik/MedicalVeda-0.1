@@ -1,0 +1,12 @@
+﻿@using MVC.Boilerplate.Models.Lazy
+
+@model List<Person>  
+  
+@foreach (var person in Model)  
+{  
+    <tr>  
+        <td>@person.Id</td>  
+        <td>@person.Name</td>   
+        <td>@person.Email</td>  
+    </tr>  
+}  

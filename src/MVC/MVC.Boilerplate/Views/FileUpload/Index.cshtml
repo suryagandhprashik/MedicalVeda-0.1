@@ -1,0 +1,43 @@
+﻿@model MVC.Boilerplate.Models.FileUpload.FileUploadModel
+
+  <style>
+      .bd-callout-info{
+          border: 1px solid #eee;
+          border-left-color: #5bc0de;
+          border-left-width: 0.25rem;
+      }
+  </style>
+  <div mt-3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active"><a>Upload File</a></li>
+        </ol>
+    </nav>
+</div>
+
+  <div class="w-25 p-3 text-center">
+      <h2>File Upload</h2>
+  </div>
+  <div class="col-5 card border border-dark rounded m-20 mx-auto"> 
+      <div class="card-header">File Upload &nbsp;
+          <span data-toggle="tooltip" data-placement="right" title="Only (jpg,jpeg,png,csv,pdf) files up to 1MB allowed."><i class="fa fa-info-circle"></i></span></div>
+      <div class="card-body">
+ <form enctype="multipart/form-data" method="post">
+    <vc:file-upload field-name="@nameof(Model.File)"></vc:file-upload>
+
+
+     <div class="my-2 mb-2 bd-callout-info">
+         <div class="px-2 pt-2"><b>Note: </b><br />
+             <ul><li>@ViewBag.TypeDisclaimer</li>
+                 <li>@ViewBag.SizeDisclaimer</li></ul>
+                 </div></div>
+    
+   
+    </form>
+    </div>
+    </div>
+    
+ 
+  <script src="~/scripts/fileUpload.js" type="text/javascript" on-content-loaded="true">    
+  </script>

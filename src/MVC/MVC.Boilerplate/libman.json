@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "datatables@1.10.21",
+      "destination": "wwwroot/lib/datatables/"
+    },
+    {
+      "library": "datatables-buttons@2.2.3",
+      "destination": "wwwroot/lib/datatables/js/datatables-buttons/"
+    },
+    {
+      "library": "pdfmake@0.2.6",
+      "destination": "wwwroot/lib/datatables/js/"
+    },
+    {
+      "library": "jszip@3.10.1",
+      "destination": "wwwroot/lib/datatables/js/"
+    },
+    {
+      "library": "Buttons@2.0.0",
+      "destination": "wwwroot/lib/datatables/js/"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MVC.Boilerplate.Models.Category.Queries.Category>
+@{
+    ViewData["Title"] = "Category List";
+}
+
+<div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item active"><a>Category List</a></li>
+        </ol>
+    </nav>
+</div>
+<div class="card my-2 border">
+    <div class=" card-header">
+        <a type="button" class=" btn btn-sm btn-success btn-sm d-flex float-end mb-2" asp-controller="Category" asp-action="CreateCategory">
+            Create&nbsp;
+            <i class="fa fa-plus mt-1"></i> &nbsp;
+        </a>
+         <button type="button"
+            class=" btn btn-sm btn-primary btn-sm d-flex float-end mb-2 mx-2" 
+            onclick="generatePDF()"><span class="mt-1 fa fa-file-pdf-o"></span>&nbsp;
+        Generate PDF 
+    </button>
+            <h3>@ViewData["Title"]</h3>
+        <div container card-body>
+            <table id="table_id" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CategoryId</td>
+                            <td>@item.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+<script>
+
+    var table = $('#table_id').DataTable({
+            "lengthMenu": [ [2, 5, 10, -1], [ 2, 5, 10, "All"] ],
+            "pageLength": 5
+        });
+
+        function generatePDF() {
+       window.open('@Url.Action("GenerateAllCategoriesPdf", "Category")');
+    }
+</script>
+        }
+
+

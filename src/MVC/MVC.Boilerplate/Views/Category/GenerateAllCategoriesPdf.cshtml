@@ -1,0 +1,81 @@
+﻿@*@model MVC.Boilerplate.Models.GeneratePdf.Invoice*@
+@model IEnumerable<MVC.Boilerplate.Models.Category.Queries.Category>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CATEGORY LIST</title>
+    <style>
+        body {
+            margin: 0px;
+            font-family: 'Segoe UI', Arial;
+        }
+        .invoice-head {
+            clear: both;
+            display: block;
+            padding: 10px;
+            margin-bottom: 40px;
+        }
+        .invoice-title {
+            background-color: navy;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+            width: 100%;
+        }
+        .invoice-to {
+            float: left;
+        }
+        .invoice-details {
+            float: right;
+        }
+        table {
+            clear: both;
+            border: 1px solid darkgray;
+            border-collapse: collapse;
+            margin: auto;
+            width: 100%;
+        }
+        th {
+            background-color: navy;
+            color: white;
+            text-align: left;
+        }
+        td, th {
+            border: 1px solid darkgray;
+            padding: 5px;
+        }
+        .numeric-cell {
+            text-align: left;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        } 
+    </style>
+</head>
+<body>
+    <div class="invoice-title">
+        CATEGORY LIST
+    </div>
+    <br />
+    <table>
+        <tr>
+            <th>Category Id</th>
+            <th>Category Name</th>
+        </tr>
+       
+         @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="numeric-cell">@item.CategoryId</td>
+                    <td class="numeric-cell">@item.Name</td>
+                </tr>
+            }
+    </table>
+</body>
+</html>

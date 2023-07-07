@@ -1,0 +1,52 @@
+﻿ @{
+    ViewData["Title"] = "Lazy Load Animals List (ViewComponent)";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@*There are two ways to call/invoke a ViewComponent*@
+@*      Type-1 :- @await Component.InvokeAsync("AnimalList",i)      *@
+@*      Type-2(Recommended) :- <vc:animal-list component-num=i></vc:animal-list>     *@
+
+
+<div class="accordion" id="parentAccordian">
+    @for(int i = 0; i < (int)ViewBag.TableCount; i++)
+    {
+         <div class="accordion-item">
+    <h2 class="accordion-header" id=@("accordianHeader"+i)>
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target=@("#panel"+i) aria-expanded="true" >
+        Animal Table @(i+1)
+      </button>
+    </h2>
+    <div id=@("panel"+i) class="accordion-collapse collapse show" aria-labelledby=@("accordianHeader"+i)>
+      <div class="accordion-body" id=@("tableBody"+i)>
+          <div class="spinner-border text-info" role="status">
+              <span class="visually-hidden">Loading...</span>
+          </div>
+           <h4>Loading...</h4>
+      </div>
+    </div>
+  </div>
+    }
+
+</div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @section Scripts{
+    <script>
+        var tableCount = @((int)ViewBag.TableCount);
+        $(()=>{
+            for(let i=0;i<tableCount;i++){
+                $.ajax({
+                    type: "GET",
+                    async: true,
+                    url: '@Url.Action("AnimalViewComponent","Lazy")',
+                    data: {componentNum: i},
+                    success: (data)=>{
+                        $("#tableBody"+i).html(data);
+                    }
+                });
+            }
+        });
+    </script>
+    }
